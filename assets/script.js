@@ -19,8 +19,6 @@ $(function () {
   })
 
   saveButton.on('click', function(){
-    console.log($(this).siblings('.description')[0].value); //test
-    console.log($(this).parent()[0].id); //test
     var event = {
       event: $(this).siblings('.description')[0].value,
       location: $(this).parent()[0].id,
@@ -32,22 +30,39 @@ $(function () {
   })
 
   // apply past/present/future class to each time-block by comparing the id to the current hour.
-  var currentHour = today.format('H');
+  var currentHour = dayjs().format('H');
 
   // object containing children of hours div
   var hours = $('#hours').children();
+  function setClass() {
+    hours.each(function(index, element){ 
+      if ((parseInt(currentHour) - 8) > index) {
+        $(element).addClass('past')
+      } 
+      else if ((parseInt(currentHour) - 8) === index) {
+        $(element).addClass('present')
+      }
+      else {
+        $(element).addClass('future')
+      };
+    })
+  }
+  setClass();
 
-  hours.each(function(index, element){ 
-    if ((parseInt(currentHour) - 8) > index) {
-      $(element).addClass('past')
-    } 
-    else if ((parseInt(currentHour) - 8) === index) {
-      $(element).addClass('present')
+  // interval runs every 5 seconds
+  setInterval(function(){
+    var updateHour = dayjs().format('H');
+    if (updateHour !== currentHour) {
+      $("#hours").children().removeClass('past present future'); 
+      currentHour = dayjs().format('H');
+      setClass();
     }
-    else {
-      $(element).addClass('future')
-    };
-  })
+    var updateDay = dayjs();
+    if (updateDay.format('D') !== today.format('D')) {
+      today = dayjs();
+      $("#currentDay").text(today.format("MMM D, YYYY"));
+    }
+  }, 5000);
 
   // get user input that was saved in localStorage and set values of corresponding textarea elements. 
   function renderEvent(){
