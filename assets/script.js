@@ -3,11 +3,20 @@ $(function () {
   var today = dayjs();
 
   var saveButton = $(".saveBtn")
+  var clearButton = $(".clearBtn")
   var eventArray = [];
   // this if statement allows localStorage to persist upon window refresh:
   if (!localStorage.getItem('eventArray')){
     localStorage.setItem("eventArray", JSON.stringify(eventArray));
   }
+
+  clearButton.on('click', function(){
+    if (confirm("Do you want to clear all saved text?") === true) {
+      var clearEventArray = [];
+      localStorage.setItem("eventArray", JSON.stringify(clearEventArray));
+      location.reload();
+    }
+  })
 
   saveButton.on('click', function(){
     console.log($(this).siblings('.description')[0].value); //test
@@ -56,7 +65,7 @@ $(function () {
       for (var i = 0; i<eventArray.length; i++){
         $('#'+eventArray[i].location+'').children('.description')[0].value = eventArray[i].event;
       }
-    }
+    } 
 
   }
 
