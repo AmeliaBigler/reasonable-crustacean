@@ -14,11 +14,11 @@ N/A
 
 This app can be used to schedule a user's tasks. 
 Users can enter their tasks in to a text area for each hour. 
-When the user presses the save button, their input will be saved to local storage and displayed in the same timeblock, persisting upon page refresh.  
+When the user clicks the save button, their input will be saved to local storage and displayed in the same timeblock, persisting upon page refresh.  
 
 ![Website Screenshot](./assets/screenshot.png)
 
-[Deployed Website Link]()
+[Deployed Website Link](https://ameliabigler.github.io/reasonable-crustacean/)
 
 ## Credits
 
