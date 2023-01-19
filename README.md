@@ -14,7 +14,10 @@ N/A
 
 This app can be used to schedule a user's tasks. 
 Users can enter their tasks in to a text area for each hour. 
-When the user clicks the save button, their input will be saved to local storage and displayed in the same timeblock, persisting upon page refresh.  
+When the user clicks the save button, their input will be saved to local storage and displayed in the same time-block, persisting upon page refresh.
+When the user clicks the clear-all button, all input will be cleared.
+The current date dynamically displays at the top of the page.
+The colors of the time-blocks are dynamically determined by the current hour. 
 
 ![Website Screenshot](./assets/screenshot.png)
 
